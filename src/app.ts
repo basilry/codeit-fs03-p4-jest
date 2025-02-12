@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
   res.send('Hello, Jest!');
 });
 
-app.use("/api/users", userRoutes);
+app.use("/users", userRoutes);
 
 export { app, server };

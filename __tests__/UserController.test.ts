@@ -16,7 +16,7 @@ describe("UserController", () => {
     }
   });
 
-  test("GET /api/users - should return all users", async () => {
+  test("GET /users - should return all users", async () => {
     (UserController.getAllUsers as jest.Mock).mockImplementation((req, res) => {
       res.json({
         success: true,
@@ -32,7 +32,7 @@ describe("UserController", () => {
     expect(res.body.users[0].name).toBe("John Doe");
   });
 
-  test("GET /api/users/:id - should return a user", async () => {
+  test("GET /users/:id - should return a user", async () => {
     (UserController.getUserById as jest.Mock).mockImplementation((req, res) => {
       res.json({
         id: 1,
@@ -42,7 +42,7 @@ describe("UserController", () => {
     });
   });
 
-  test("POST /api/users - should create a user", async () => {
+  test("POST /users - should create a user", async () => {
     (UserController.createUser as jest.Mock).mockImplementation((req, res) => {
       res.status(201).json({
         success: true,
