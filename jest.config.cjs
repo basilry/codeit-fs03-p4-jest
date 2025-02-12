@@ -1,9 +1,11 @@
 /** @type {import('jest').Config} */
 const config = {
-  testEnvironment: 'node',
-  verbose: true,
-  collectCoverage: true,
-  testMatch: ['**/__tests__/**/*.js'],
+  preset: "ts-jest",
+  testEnvironment: "node",
+  moduleFileExtensions: ["ts", "js"],
+  transform: {
+    "^.+\\.ts?$": "ts-jest",
+  },
 };
 
 module.exports = config;
