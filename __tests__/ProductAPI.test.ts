@@ -3,9 +3,6 @@ import app from "../src/app";
 import productService from "../src/services/ProductService";
 
 describe("ProductController", () => {
-  beforeEach(() => {
-    productService.resetProducts();
-  });
 
   test("GET /products - should return all products", async () => {
     jest.spyOn(productService, "getAllProducts").mockResolvedValue([

@@ -15,6 +15,6 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["src/**/*.ts", "src/types/**.d.ts"],
+  "include": ["src/**/*.ts", "src/types/**.d.ts", "src/prismaClient.ts"],
   "exclude": ["node_modules", "coverage", "__tests__", "jest.config.cjs", "babel.config.cjs"]
 }

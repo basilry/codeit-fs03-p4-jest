@@ -17,13 +17,13 @@ const getProduct = async (req: Request, res: Response) => {
 
 const createNewProducts = async (req: Request, res: Response) => {
   const { name, price } = req.body;
-  const newProduct = await productService.createProduct({ name, price });
+  const newProduct = await productService.createProduct(name, price);
   res.status(201).json({ success: true, product: newProduct });
 };
 
 const updateProduct = async (req: Request, res: Response) => {
   const { name, price } = req.body;
-  const updatedProduct = await productService.updateProduct(Number(req.params.id), { name, price });
+  const updatedProduct = await productService.updateProduct(Number(req.params.id), name, price);
 
   if (!updatedProduct) {
     res.status(404).json({ success: false, message: "Product not found" });

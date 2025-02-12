@@ -1,4 +1,4 @@
-import server from './src/server';
+import { server } from "./src/app";
 
 beforeAll(() => {
   console.log("\n🚀 Jest 테스트 시작!");

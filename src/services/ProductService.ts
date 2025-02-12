@@ -1,45 +1,29 @@
-import { Product } from "../models/Product";
+import prisma from "../prismaClient";
 
-let products: Product[] = [
-  { id: 1, name: "Laptop", price: 1200 },
-];
 
-const getAllProducts = async (): Promise<Product[]> => {
-  return products;
+const getAllProducts = async () => {
+  return await prisma.product.findMany();
 };
 
-const getProductById = async (id: number): Promise<Product | null> => {
-  return products.find((p) => p.id === id) || null;
+const getProductById = async (id: number) => {
+  return await prisma.product.findUnique({ where: { id } });
 };
 
-const createProduct = async (product: Omit<Product, "id">): Promise<Product> => {
-  const newProduct: Product = { id: Date.now(), ...product };
-  products.push(newProduct);
-  return newProduct;
+const createProduct = async (name: string, price: number) => {
+  return await prisma.product.create({
+    data: { name, price },
+  });
 };
 
-const updateProduct = async (id: number, product: Omit<Product, "id">): Promise<Product | null> => {
-  const index = products.findIndex((p) => p.id === id);
-  if (index === -1) {
-    return null;
-  }
-  products[index] = { id, ...product };
-  return products[index];
+const updateProduct = async (id: number, name: string, price: number) => {
+  return await prisma.product.update({
+    where: { id },
+    data: { name, price },
+  });
 };
 
-const deleteProduct = async (id: number): Promise<Product | null> => {
-  const index = products.findIndex((p) => p.id === id);
-  if (index === -1) {
-    return null;
-  }
-  return products.splice(index, 1)[0];
-};
-
-// ✅ Jest 테스트를 위해 `resetProducts` 추가
-const resetProducts = () => {
-  products = [
-    { id: 1, name: "Laptop", price: 1200 },
-  ];
+const deleteProduct = async (id: number) => {
+  return await prisma.product.delete({ where: { id } });
 };
 
 export default {
@@ -48,5 +32,4 @@ export default {
   createProduct,
   updateProduct,
   deleteProduct,
-  resetProducts,
 };
