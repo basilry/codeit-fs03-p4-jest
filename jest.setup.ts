@@ -17,7 +17,7 @@ afterEach(() => {
   }
 });
 
-afterAll(async () => {
+afterAll(() => {
   server.close()
   console.log("\n✅ Jest 테스트 완료!");
 });
